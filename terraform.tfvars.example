@@ -1,0 +1,40 @@
+# Terraform Variables - Copy and modify as needed
+
+subscription_id = "your-azure-subscription-id"
+
+resource_group_name = "rg-demo-app"
+location            = "Southeast Asia"
+environment         = "prod"
+
+# Virtual Network
+vnet_address_space      = "10.0.0.0/16"
+subnet_address_prefix   = "10.0.1.0/24"
+
+# VM Configuration - 8 vCPU, 32 GB RAM, Ubuntu 24.04 LTS
+vm_name              = "vm-app-server"
+vm_size              = "Standard_D8s_v3"  # 8 vCPU, 32 GB RAM
+os_disk_size_gb      = 256
+admin_username       = "azureuser"
+ssh_public_key_path  = "~/.ssh/id_rsa.pub"  # Update with your SSH public key path
+ssh_source_ip        = "*"  # Change to your IP, e.g., "YOUR.IP.ADDRESS.HERE/32" for better security
+
+# Redis Cache Configuration - Basic (minimum plan)
+redis_cache_name = "redis-demo-app"
+redis_capacity   = 0  # 0 = 250MB (minimum)
+redis_family     = "C"
+redis_sku_name   = "Basic"
+
+# DNS Configuration
+create_dns_zone = false  # Set to true if managing DNS in Azure
+domain_name     = "example.com"
+dns_record_name = "demo"
+
+# Key Vault
+key_vault_name = "kv-demo-app"
+
+# Tags
+environment_tags = {
+  "Environment" = "Production"
+  "Project"     = "Demo App"
+  "ManagedBy"   = "Terraform"
+}
