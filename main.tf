@@ -128,12 +128,12 @@ resource "azurerm_linux_virtual_machine" "main" {
     disk_size_gb         = var.os_disk_size_gb
   }
 
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-jammy"
-    sku       = "24_04-lts-gen2"
-    version   = "latest"
-  }
+source_image_reference {
+  publisher = "Canonical"
+  offer     = "0001-com-ubuntu-server-jammy"
+  sku       = "22_04-lts-gen2"
+  version   = "latest"
+}
 
   network_interface_ids = [
     azurerm_network_interface.main.id
