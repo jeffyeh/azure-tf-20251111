@@ -97,31 +97,31 @@ variable "redis_sku_name" {
   default     = "Basic"
 }
 
-# DNS Configuration
-variable "create_dns_zone" {
-  description = "Whether to create DNS zone in Azure"
-  type        = bool
-  default     = false  # Set to true if you want to manage DNS in Azure
-}
+# # DNS Configuration
+# variable "create_dns_zone" {
+#   description = "Whether to create DNS zone in Azure"
+#   type        = bool
+#   default     = false  # Set to true if you want to manage DNS in Azure
+# }
 
-variable "domain_name" {
-  description = "Domain name (e.g., example.com)"
-  type        = string
-  default     = "example.com"
-}
+# variable "domain_name" {
+#   description = "Domain name (e.g., example.com)"
+#   type        = string
+#   default     = "example.com"
+# }
 
-variable "dns_record_name" {
-  description = "DNS record name (e.g., demo for demo.example.com)"
-  type        = string
-  default     = "demo"
-}
+# variable "dns_record_name" {
+#   description = "DNS record name (e.g., demo for demo.example.com)"
+#   type        = string
+#   default     = "demo"
+# }
 
-# Key Vault Configuration
-variable "key_vault_name" {
-  description = "Name of the Azure Key Vault"
-  type        = string
-  default     = "kv-demo-app"
-}
+# # Key Vault Configuration
+# variable "key_vault_name" {
+#   description = "Name of the Azure Key Vault"
+#   type        = string
+#   default     = "kv-demo-app"
+# }
 
 variable "environment_tags" {
   description = "Common tags for all resources"

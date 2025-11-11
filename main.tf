@@ -157,43 +157,43 @@ resource "azurerm_redis_cache" "main" {
   }
 }
 
-# DNS Zone (if you want to manage DNS in Azure)
-resource "azurerm_dns_zone" "main" {
-  count               = var.create_dns_zone ? 1 : 0
-  name                = var.domain_name
-  resource_group_name = azurerm_resource_group.main.name
-}
+# # DNS Zone (if you want to manage DNS in Azure)
+# resource "azurerm_dns_zone" "main" {
+#   count               = var.create_dns_zone ? 1 : 0
+#   name                = var.domain_name
+#   resource_group_name = azurerm_resource_group.main.name
+# }
 
-# DNS A Record pointing to Public IP
-resource "azurerm_dns_a_record" "main" {
-  count               = var.create_dns_zone ? 1 : 0
-  name                = var.dns_record_name
-  zone_name           = azurerm_dns_zone.main[0].name
-  resource_group_name = azurerm_resource_group.main.name
-  ttl                 = 300
-  records             = [azurerm_public_ip.main.ip_address]
-}
+# # DNS A Record pointing to Public IP
+# resource "azurerm_dns_a_record" "main" {
+#   count               = var.create_dns_zone ? 1 : 0
+#   name                = var.dns_record_name
+#   zone_name           = azurerm_dns_zone.main[0].name
+#   resource_group_name = azurerm_resource_group.main.name
+#   ttl                 = 300
+#   records             = [azurerm_public_ip.main.ip_address]
+# }
 
-# Application Gateway for SSL/TLS termination (optional, for enhanced SSL/TLS management)
-# You can also use Azure Front Door or manage SSL/TLS directly on the VM with Nginx
+# # Application Gateway for SSL/TLS termination (optional, for enhanced SSL/TLS management)
+# # You can also use Azure Front Door or manage SSL/TLS directly on the VM with Nginx
 
-# Key Vault for storing secrets (SSL certificates, passwords, etc.)
-resource "azurerm_key_vault" "main" {
-  name                        = var.key_vault_name
-  location                    = azurerm_resource_group.main.location
-  resource_group_name         = azurerm_resource_group.main.name
-  enabled_for_disk_encryption = true
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  sku_name                    = "standard"
+# # Key Vault for storing secrets (SSL certificates, passwords, etc.)
+# resource "azurerm_key_vault" "main" {
+#   name                        = var.key_vault_name
+#   location                    = azurerm_resource_group.main.location
+#   resource_group_name         = azurerm_resource_group.main.name
+#   enabled_for_disk_encryption = true
+#   tenant_id                   = data.azurerm_client_config.current.tenant_id
+#   sku_name                    = "standard"
+#
+#   access_policy {
+#     tenant_id = data.azurerm_client_config.current.tenant_id
+#     object_id = data.azurerm_client_config.current.object_id
+#
+#     certificate_permissions = ["Create", "Delete", "Get", "Import", "List", "Recover", "Update"]
+#     secret_permissions      = ["Backup", "Delete", "Get", "List", "Purge", "Recover", "Restore", "Set"]
+#   }
+# }
 
-  access_policy {
-    tenant_id = data.azurerm_client_config.current.tenant_id
-    object_id = data.azurerm_client_config.current.object_id
-
-    certificate_permissions = ["Create", "Delete", "Get", "Import", "List", "Recover", "Update"]
-    secret_permissions      = ["Backup", "Delete", "Get", "List", "Purge", "Recover", "Restore", "Set"]
-  }
-}
-
-# Get current context for Key Vault
-data "azurerm_client_config" "current" {}
+# # Get current context for Key Vault
+# data "azurerm_client_config" "current" {}

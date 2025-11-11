@@ -70,15 +70,15 @@ output "redis_connection_string" {
   sensitive   = true
 }
 
-output "key_vault_id" {
-  description = "The ID of the Key Vault"
-  value       = azurerm_key_vault.main.id
-}
+# output "key_vault_id" {
+#   description = "The ID of the Key Vault"
+#   value       = azurerm_key_vault.main.id
+# }
 
-output "key_vault_uri" {
-  description = "The URI of the Key Vault"
-  value       = azurerm_key_vault.main.vault_uri
-}
+# output "key_vault_uri" {
+#   description = "The URI of the Key Vault"
+#   value       = azurerm_key_vault.main.vault_uri
+# }
 
 output "virtual_network_id" {
   description = "The ID of the Virtual Network"
@@ -95,17 +95,16 @@ output "nsg_id" {
   value       = azurerm_network_security_group.main.id
 }
 
-output "dns_nameservers" {
-  description = "The nameservers for the DNS zone (if created)"
-  value       = var.create_dns_zone ? azurerm_dns_zone.main[0].name_servers : null
-}
+# output "dns_nameservers" {
+#   description = "The nameservers for the DNS zone (if created)"
+#   value       = var.create_dns_zone ? azurerm_dns_zone.main[0].name_servers : null
+# }
 
 output "deployment_summary" {
   description = "Summary of the deployment"
   value = {
-    public_ip        = azurerm_public_ip.main.ip_address
-    domain_endpoint  = "https://${var.dns_record_name}.${var.domain_name}"
-    redis_endpoint   = "${azurerm_redis_cache.main.hostname}:${azurerm_redis_cache.main.ssl_port}"
-    ssh_access       = "ssh ${var.admin_username}@${azurerm_public_ip.main.ip_address}"
+    public_ip      = azurerm_public_ip.main.ip_address
+    redis_endpoint = "${azurerm_redis_cache.main.hostname}:${azurerm_redis_cache.main.ssl_port}"
+    ssh_access     = "ssh ${var.admin_username}@${azurerm_public_ip.main.ip_address}"
   }
 }

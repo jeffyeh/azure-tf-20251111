@@ -24,13 +24,13 @@ redis_capacity   = 0  # 0 = 250MB (minimum)
 redis_family     = "C"
 redis_sku_name   = "Basic"
 
-# DNS Configuration
-create_dns_zone = false  # Set to true if managing DNS in Azure
-domain_name     = "example.com"
-dns_record_name = "demo"
+# # DNS Configuration
+# create_dns_zone = false  # Set to true if managing DNS in Azure
+# domain_name     = "example.com"
+# dns_record_name = "demo"
 
-# Key Vault
-key_vault_name = "kv-demo-app"
+# # Key Vault
+# key_vault_name = "kv-demo-app"
 
 # Tags
 environment_tags = {
